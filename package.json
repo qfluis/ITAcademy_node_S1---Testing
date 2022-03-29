@@ -1,0 +1,22 @@
+{
+  "name": "itacademy_node_s1---testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qfluis/ITAcademy_node_S1---Testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qfluis/ITAcademy_node_S1---Testing/issues"
+  },
+  "homepage": "https://github.com/qfluis/ITAcademy_node_S1---Testing#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
