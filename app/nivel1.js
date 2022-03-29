@@ -72,27 +72,63 @@ getSalary = (employee) => {
     });
 }
 
-//Nivel 1 Ejercicio 2
-/*
-getEmployeeAndSalary = async (id) => {
+//Nivel 2 Ejercicio 1
+/* Crea una nova funció asíncrona que cridi a una altra que retorni una Promise que efectuï 
+la seva funció resolve() després de 2 segons de la seva invocació. */
+
+const esperaXSegundos = (segundos) =>{
+    return new Promise((resolve, reject) => {
+        if(!isNaN(segundos)) {
+            setTimeout(() => resolve() , segundos*1000);
+        } else {
+            reject(new Error("Error. Se esperaba un número"));
+        }        
+    });
+}
+
+const esperar = async (segundos) => {
+    // Añadidos returns a función original
     try {
-        const employee = await getEmployee(id);
-        const salary = await getSalary(employee);
-        console.log(`Empleado: ${employee.name} Salario: ${salary.salary}`);
+        console.log("N2E1 > Espera iniciada ...")
+        await esperaXSegundos(segundos);
+        console.log("N2E1 > Espera finalizada");
+        return true;
     } catch ( err ) {
-        console.log( err.message );
-    }
-}*/
+        console.log( "N2E1 > " + err.message );
+        return err;
+    }    
+    
+    
+}
+
+// Nivel 2 Ejercicio 3 + Nivel 3 Ejercicio 1
+/* Invoca la primera funció getEmployee() i després getSalary() 
+niant l'execució de les dues promises.*/
+/* Fixa un element catch a la invocació del nivell anterior que capturi qualsevol 
+error i el mostri per la consola. */
+
+const getEmployeeAndSalary = async (id) => {
+    let respuesta = {};
+    await getEmployee(id)
+        .then( res => {
+            respuesta.id = id;
+            respuesta.name = res.name;
+            return getSalary(res);
+        })
+        .then( res => {
+            console.log("N2E2",res)
+            respuesta.salary = res.salary;
+        })
+        .catch( err => {
+            console.log("N3E1",err.message);
+            respuesta = err;
+        }); 
+    
+    return respuesta;
+}
 
 
-
-
-
-
-
-
-
-
+getEmployeeAndSalary(1);
 
 
 module.exports.sumar = sumar;
@@ -101,7 +137,10 @@ module.exports.multiplicar = multiplicar;
 module.exports.dividir = dividir;
 
 module.exports.getEmployee = getEmployee;
-module.exports.getSalary = getSalary
+module.exports.getSalary = getSalary;
+
+module.exports.esperar = esperar;
+module.exports.getEmployeeAndSalary = getEmployeeAndSalary;
 
 
 

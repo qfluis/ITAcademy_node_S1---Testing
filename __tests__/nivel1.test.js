@@ -62,8 +62,65 @@ describe('Testing función dividir', ()=> {
 // TESTING Async / Await N1 E1
 // https://jestjs.io/docs/asynchronous
 
-describe('Testing funciones getEmployee y getSalary', ()=> {
+describe('Testing función getEmployee', ()=> {
     test('obtener empleado Linus Torvalds', () => {
         return expect(nivel1.getEmployee(1)).resolves.toEqual({id: 1, name: 'Linux Torvalds'});        
     });
+
+    test('obtener error empleado no encontrado', () => {
+        return expect(nivel1.getEmployee(5)).rejects.toEqual(new Error('Empleado no encontrado'));        
+    });
+});
+describe('Testing función getSalary', ()=> {
+    test('obtener salario de Jeff Bezos', () => {
+        return expect(nivel1.getSalary({id: 3, name: 'Jeff Bezos'})).resolves.toEqual({id: 3, salary: 2000});        
+    });
+
+    test('obtener error salario no encontrado (buscando empleado existente)', () => {
+        return expect(nivel1.getSalary({id: 4, name: 'Bender'})).rejects.toEqual(new Error('Salario no encontrado'));        
+    });
+
+    test('obtener error salario no encontrado (buscando empleado no existente)', () => {
+        return expect(nivel1.getSalary({id: 8, name: 'Bleble'})).rejects.toEqual(new Error('Salario no encontrado'));        
+    });
+});
+
+// TESTING Async / Await N2 E1
+// Jest Fake Timers
+describe('Testing función esperar', () => {
+    // TODO: No consigo que funcionen FakeTimers
+    /* PETA SI LO USO
+    beforeEach(()=> {
+        jest.useFakeTimers(); // No parece hacer nada...
+    });
+    
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    });
+    */
+
+    test('Entra y ejecuta la función ', () => {
+        return expect(nivel1.esperar(1)).resolves.toBe(true);       
+    });
+    
+    test('Devuelve error al pasar parámetro no numérico', () => {
+        return expect(nivel1.esperar('jola')).resolves.toEqual(new Error("Error. Se esperaba un número"));
+    });
+
+});
+
+describe('Testing función getEmployeeAndSalary', () => {
+    test('obtener empleado y salario de Linus Torvalds', () => {
+        return expect(nivel1.getEmployeeAndSalary(1)).resolves.toEqual({id: 1, name: 'Linux Torvalds', salary:4000});        
+    });
+    
+    test('obtener error empleado no encontrado', () => {
+        return expect(nivel1.getEmployeeAndSalary(5)).resolves.toEqual(new Error('Empleado no encontrado'));        
+    });
+
+    test('obtener error salario no encontrado (buscando empleado existente sin salario)', () => {
+        return expect(nivel1.getEmployeeAndSalary(4)).resolves.toEqual(new Error('Salario no encontrado'));        
+    });
+    
 });
