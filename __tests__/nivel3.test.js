@@ -1,9 +1,10 @@
-const {employees, salaries, getEmployeeAndSalary} = require('../app/nivel3');
+const {getEmployeeAndSalary} = require('../app/nivel3');
 
 // TODO: hacer que funcione...
 jest.mock("../app/nivel3", ()=> {
+    console.log("HOLAWA");
     const originalModule = jest.requireActual('../app/nivel3');
-
+    console.log("MODULO", originalModule);
     return {
         //__esModule:true,
         ...originalModule,
@@ -16,8 +17,7 @@ jest.mock("../app/nivel3", ()=> {
         salaries: [
             {"id": 1, "salary": 5000},
             {"id": 2, "salary": 6000}
-        ]
-        
+        ]        
     }
 });
 /*

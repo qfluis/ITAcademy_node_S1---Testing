@@ -4,9 +4,14 @@ const fs = require('fs');
 que retorni una Promise efectuant la cerca en l'objecte pel seu id. 
 Crea una altra arrow function getSalary que rebi com a paràmetre un objecte 
 employee i retorni el seu salari.*/
+let employees;
+let salaries;
 
-let employees = JSON.parse(fs.readFileSync('./JSON/employees.json'));
-let salaries = JSON.parse(fs.readFileSync('./JSON/salaries.json'));
+inicializarDatos = () =>  {
+    employees = JSON.parse(fs.readFileSync('./JSON/employees.json'));
+    salaries = JSON.parse(fs.readFileSync('./JSON/salaries.json'));
+}
+
 
 
 getEmployee = (id) => {
