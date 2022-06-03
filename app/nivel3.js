@@ -8,8 +8,8 @@ let employees;
 let salaries;
 
 inicializarDatos = () =>  {
-    employees = JSON.parse(fs.readFileSync('./JSON/employees.json'));
-    salaries = JSON.parse(fs.readFileSync('./JSON/salaries.json'));
+    employees = JSON.parse(fs.readFileSync(__dirname + '/JSON/employees.json'));
+    salaries = JSON.parse(fs.readFileSync(__dirname + '/JSON/salaries.json'));
 }
 
 
@@ -45,14 +45,25 @@ getEmployeeAndSalary = async (id) => {
     try {
         const employee = await getEmployee(id);
         const salary = await getSalary(employee);
-        console.log(`Empleado: ${employee.name} Salario: ${salary.salary}`);
-        return {id, name: employee.name, salary: employee.salary}
+        //console.log(`Empleado: ${employee.name} Salario: ${salary.salary}`);
+        return {id, name: employee.name, salary: salary.salary}
         
     } catch ( err ) {
         console.log( err.message );
         return ( err );
     }
 }
+
+inicializarDatos();
+
+/*
+inicializarDatos();
+getEmployeeAndSalary(1)
+    .then( (response) =>{
+        console.log(response);
+    })
+    .catch( err => console.log( err ));
+*/
 
 module.exports.employees = employees;
 module.exports.salaries = salaries;
