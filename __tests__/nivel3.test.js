@@ -1,3 +1,4 @@
+
 const {getEmployeeAndSalary} = require('../app/nivel3');
 
 // TODO: hacer que funcione...
@@ -20,7 +21,7 @@ jest.mock("../app/nivel3", ()=> {
         ]        
     }
 });
-/*
+
 const employees = jest
   .spyOn(nivel3, 'employees')
   .mockImplementation(() => {
@@ -39,7 +40,7 @@ const salaries = jest
         {"id": 2, "salary": 6000}
     ]
     }); // comment this line if just want to "spy"
-*/
+
 
 
 describe('Testing función getEmployeeAndSalary (JSON version)', () => {

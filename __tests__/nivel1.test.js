@@ -59,6 +59,7 @@ describe('Testing función dividir', ()=> {
 });
 
 
+
 // TESTING Async / Await N1 E1
 // https://jestjs.io/docs/asynchronous
 
@@ -87,6 +88,7 @@ describe('Testing función getSalary', ()=> {
 
 // TESTING Async / Await N2 E1
 // Jest Fake Timers
+
 describe('Testing función esperar', () => {
     // TODO: No consigo que funcionen FakeTimers
     /* PETA SI LO USO
@@ -124,3 +126,4 @@ describe('Testing función getEmployeeAndSalary', () => {
     });
     
 });
+

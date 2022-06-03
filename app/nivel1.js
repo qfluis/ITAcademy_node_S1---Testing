@@ -89,12 +89,12 @@ const esperaXSegundos = (segundos) =>{
 const esperar = async (segundos) => {
     // Añadidos returns a función original
     try {
-        console.log("N2E1 > Espera iniciada ...")
+        //console.log("N2E1 > Espera iniciada ...")
         await esperaXSegundos(segundos);
-        console.log("N2E1 > Espera finalizada");
+        //console.log("N2E1 > Espera finalizada");
         return true;
     } catch ( err ) {
-        console.log( "N2E1 > " + err.message );
+        //console.log( "N2E1 > " + err.message );
         return err;
     }    
     
@@ -116,11 +116,11 @@ const getEmployeeAndSalary = async (id) => {
             return getSalary(res);
         })
         .then( res => {
-            console.log("N2E2",res)
+            //console.log("N2E2",res)
             respuesta.salary = res.salary;
         })
         .catch( err => {
-            console.log("N3E1",err.message);
+            //console.log("N3E1",err.message);
             respuesta = err;
         }); 
     
