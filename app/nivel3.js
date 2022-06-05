@@ -4,20 +4,32 @@ const fs = require('fs');
 que retorni una Promise efectuant la cerca en l'objecte pel seu id. 
 Crea una altra arrow function getSalary que rebi com a paràmetre un objecte 
 employee i retorni el seu salari.*/
-let employees;
-let salaries;
 
+/* Intentos de facilitar el mock, no funcionaron... */
+let _emp, _sal;
+inicializarDatos = () =>  {
+    _emp = JSON.parse(fs.readFileSync(__dirname + '/JSON/employees.json'));
+    _sal = JSON.parse(fs.readFileSync(__dirname + '/JSON/salaries.json'));
+}
+
+let employees = () => _emp;
+let salaries = () => _sal;
+
+
+/* Implementación original
+let employees, salaries;
 inicializarDatos = () =>  {
     employees = JSON.parse(fs.readFileSync(__dirname + '/JSON/employees.json'));
     salaries = JSON.parse(fs.readFileSync(__dirname + '/JSON/salaries.json'));
 }
+*/
 
 
 
 getEmployee = (id) => {
 
     return new Promise((resolve, reject) => {        
-        const result = employees.find( employee => employee.id == id);
+        const result = employees().find( employee => employee.id == id);
         if(result){
             resolve(result);
         } else {
@@ -28,7 +40,7 @@ getEmployee = (id) => {
 
 getSalary = (employee) => {
     return new Promise((resolve, reject) => {        
-        const result = salaries.find( salary => salary.id == employee.id);
+        const result = salaries().find( salary => salary.id == employee.id);
         if(result){
             resolve(result);
         } else {
@@ -57,13 +69,13 @@ getEmployeeAndSalary = async (id) => {
 inicializarDatos();
 
 /*
-inicializarDatos();
 getEmployeeAndSalary(1)
     .then( (response) =>{
         console.log(response);
     })
     .catch( err => console.log( err ));
 */
+
 
 module.exports.employees = employees;
 module.exports.salaries = salaries;
