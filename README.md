@@ -7,7 +7,7 @@ Para ejecutar todos los tests:
 ```
 npm run test
 ```
-Para ejecutar las suites de test separadas por nivelmm:
+Para ejecutar las suites de test separadas por nivel:
 ```
 npm run test_n1
 npm run test_n2
